@@ -31,6 +31,7 @@ public class CompletedTaskClass
                 AcntsUpdated.add(acnts);
             }
         }
+        
         update AcntsUpdated;
     }    
 }
