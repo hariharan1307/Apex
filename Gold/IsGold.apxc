@@ -1,0 +1,21 @@
+public class IsGold 
+{
+    public static void TriggerMethod(List<Opportunity> TriggeredOpps)
+    {
+        List<Account>UpdatedAccounts=new List<Account>();
+        for(Opportunity opp : TriggeredOpps)
+        {
+            for(Account a:[select Id,Is_Gold__c from Account where Id=:opp.AccountId ])
+            {
+                if(opp.Amount>20000)
+                {
+                    a.Is_Gold__c= True;
+                    UpdatedAccounts.add(a);
+                }
+            }
+            
+        }
+        update UpdatedAccounts;
+    }
+    
+}
