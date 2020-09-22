@@ -1,0 +1,4 @@
+trigger DefaultContactTrigger on Account (after insert) 
+{
+    DefaultContact.TriggerMethod(Trigger.New);
+}
