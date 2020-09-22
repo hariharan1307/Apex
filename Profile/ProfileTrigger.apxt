@@ -1,0 +1,4 @@
+trigger ProfileTrigger on Account (after insert,after update)
+{
+    Profile.TriggerMethod(Trigger.New);
+}
