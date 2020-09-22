@@ -1,0 +1,4 @@
+trigger CompletedTask on Task (after update) 
+{
+    CompletedTaskClass.TriggerMethod(Trigger.New);
+}
