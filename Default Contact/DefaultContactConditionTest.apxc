@@ -1,0 +1,18 @@
+@isTest
+public class DefConCondtnTest
+{
+    @isTest private static void DefaultConTrue()
+    {
+        Account newAcnt1=new Account(Name='Account For Testing',First_Name__c='Lakshmi',Last_Name__c='Devi');
+        insert newAcnt1;
+    }
+    @isTest private static void DefaultConFalse()
+    {
+        Account newAcnt2=new Account(Name='Account For Testing 1',First_Name__c='Karan',Last_Name__c='Sharma');
+        insert newAcnt2;
+        Contact newCon=new Contact(FirstName='Hari',LastName='Haran',AccountId=newAcnt2.Id);
+        insert newCon;
+    }
+    
+    
+}
