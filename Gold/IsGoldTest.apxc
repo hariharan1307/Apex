@@ -1,0 +1,17 @@
+@isTest
+public class GoldTriggerTest
+{
+    @isTest
+    public static void IsGoldTrue()
+    {
+        Account acnts=new Account(Name='Account for testing',First_Name__c='Account',Last_Name__c='One');
+        insert acnts;
+        Opportunity opps=new Opportunity(Name='Testing Opp 1',Amount=5678,AccountId=acnts.Id,StageName='Prospecting',CloseDate=Date.newInstance(2020, 10, 19));
+        insert opps;
+        Test.startTest();
+        opps.Amount=57657;
+        update opps;
+        Test.stopTest();
+    }
+    
+}
