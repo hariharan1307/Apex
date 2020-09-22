@@ -1,0 +1,4 @@
+trigger IsGold on Opportunity (after insert,after update)
+{
+    IsGold.TriggerMethod(Trigger.New);
+}
