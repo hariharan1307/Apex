@@ -1,0 +1,28 @@
+public class DefaultContactConditions 
+{
+    public static void TriggerMethod(List<Contact> TriggeredContacts)
+    {
+        List<Account>UpdatedAccounts=new List<Account>();
+        for(Contact contacts:TriggeredContacts)
+        {
+            for(Account Accounts:[select Id,Name from Account where Id=:contacts.AccountId ])
+            {
+                for(List<Contact> ContactsRelatedToAccount: [select Id,Name from Contact where AccountId=:Accounts.Id])
+                {
+                    if(ContactsRelatedToAccount.size()==1)
+                    {
+                        Accounts.Only_Default_Contact__c=true;
+                        UpdatedAccounts.add(Accounts);
+                        
+                    }
+                    if(ContactsRelatedToAccount.size()>1)
+                    {
+                        Accounts.Only_Default_Contact__c=false;
+                        UpdatedAccounts.add(Accounts);                
+                    }
+                }
+            }
+        }
+        update UpdatedAccounts;
+    }
+}
