@@ -1,0 +1,31 @@
+@isTest
+public class ProfileTriggerTest 
+{
+    @isTest
+    private static void UpdateProfile()
+    {
+        Account acntOne = new Account(Name='Test Account One',First_Name__c='Ajith',Last_Name__c='Kumar');
+        insert acntOne;
+        Contact conOne=new Contact(FirstName='Naveen',LastName='Kumar',AccountId=acntOne.Id);
+        insert conOne;
+        Test.startTest();
+        acntOne.Website='www.AjithKumar.com';
+        update acntOne;
+        Test.stopTest();
+        
+    }
+    @isTest
+    private static void NotUpdateProfile()
+    {
+        Account acntTwo = new Account(Name='Test Account Two',First_Name__c='Vijay',Last_Name__c='Joseph');
+        insert acntTwo;
+        Contact conTwo=new Contact(FirstName='Naveen',LastName='Kumar',AccountId=acntTwo.Id);
+        insert conTwo;
+        Test.startTest();
+        System.assertEquals(null, conTwo.Profile__c);
+        Test.stopTest();
+        
+    }
+    
+    
+}
