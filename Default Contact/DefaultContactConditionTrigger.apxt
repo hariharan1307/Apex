@@ -1,0 +1,5 @@
+trigger DefaultContactConditions on Contact (after insert)
+{
+    DefaultContactConditions.TriggerMethod(Trigger.New);
+    
+}
