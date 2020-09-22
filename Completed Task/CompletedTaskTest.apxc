@@ -1,0 +1,35 @@
+@isTest
+public class CompletedTaskTest
+{
+    @isTest
+    private static void CompletedTaskTestMethod()
+    {
+        List<Account>acntList=new List<Account>();
+        List<Task> taskList=new List<Task>();
+        
+        //creating accounts
+        Account acnt1=new Account(First_Name__c='Hari',Last_Name__c='Haran',Name='AccountOne');
+        acntList.add(acnt1);
+        Account acnt2=new Account(First_Name__c='Ganesh',Last_Name__c='Prathab',Name='AccountTwo');
+        acntList.add(acnt2);
+        insert acntList;
+        
+        //creating individual task for the two accounts
+        Task t1=new Task(Subject='Call',Status='Not Started',WhatId=acnt1.Id);
+        taskList.add(t1);
+        Task t2=new Task(Subject='Call',Status='Not Started',WhatId=acnt2.Id);
+        taskList.add(t2);
+        insert taskList;
+        
+        Test.startTest();
+        t1.Status='Completed';
+        update t1;
+        t2.Status='In Progress';
+        update t2;
+        Test.stopTest();
+        
+        
+        
+        
+    }
+}
