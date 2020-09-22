@@ -1,0 +1,25 @@
+public class Profile 
+{
+    public static void TriggerMethod(List<Account> TriggeredAccounts)
+    {
+        List<Contact> ContactsToBeUpdated=new List<Contact>();
+        List<Contact> ContactsRelatedToAccts=[select id,Profile__c,AccountId from Contact where AccountId in :TriggeredAccounts];
+        for(Account a:TriggeredAccounts)
+        {
+            if(a.WebSite!=null)
+            {
+                for(Contact c:ContactsRelatedToAccts)
+                {
+                    if(c.AccountId==a.Id)
+                    {
+                        String F=a.First_Name__c.substring(0,1);
+                        c.Profile__c=a.Website+'/'+F+a.Last_Name__c;
+                        ContactsToBeUpdated.add(c);
+                    }
+                }
+            }
+        }
+        Update ContactsToBeUpdated;
+    }
+    
+}
