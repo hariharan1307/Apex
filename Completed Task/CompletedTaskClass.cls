@@ -32,6 +32,5 @@ public class CompletedTaskClass
             }
         }
         update AcntsUpdated;
-    }
-    
+    }    
 }
