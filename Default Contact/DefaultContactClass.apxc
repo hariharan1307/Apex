@@ -1,0 +1,20 @@
+public class DefaultContact
+{
+    public static void TriggerMethod(List<Account> TriggeredAccounts )
+    {
+        List<Contact>ContactsToBeInserted=new List<Contact>();
+        for(Account acnts: TriggeredAccounts)
+        {
+            for(List<Contact>ExistingContact:[select Id,Name from Contact where AccountId=:acnts.Id])
+            {
+                if(ExistingContact.size()==0)
+                {
+                    Contact newcontact=new Contact(FirstName='Info',LastName='Default',Email='info@websitedomain.tld',AccountId=acnts.Id);
+                    ContactsToBeInserted.add(newcontact);
+                }
+            }
+        }
+        insert ContactsToBeInserted;
+    }
+    
+}
